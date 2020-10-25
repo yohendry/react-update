@@ -29,6 +29,10 @@ function Images() {
         }
     }
 
+    function _handleClickRemoveImage(indexToRemove) {
+        setImageList(imageList.filter((image, currentIndex) => currentIndex !== indexToRemove));
+    }
+
     function handleOnChangeInput() {
         const regexUrl = new RegExp(/^(http|https):\/\/[^ "]+$/);
         const {value} = newImageSrc.current;
@@ -39,7 +43,9 @@ function Images() {
     return (
         <section>
             <div className="flex flex-wrap justify-center">
-                <ImageGallery imageList={imageList}/>
+                <ImageGallery
+                    imageList={imageList}
+                    _handleClickRemoveImage={_handleClickRemoveImage} />
             </div>
             <div className="flex justify-between">
                 <input
@@ -60,4 +66,4 @@ function Images() {
     );
 }
 
-export default React.memo(Images);
+export default Images;

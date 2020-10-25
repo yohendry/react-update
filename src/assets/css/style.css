@@ -19209,11 +19209,6 @@ video {
   border-radius: 0.25rem;
 }
 
-.btn-blue[disabled] {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .btn[disabled] {
   opacity: 0.5;
   cursor: not-allowed;

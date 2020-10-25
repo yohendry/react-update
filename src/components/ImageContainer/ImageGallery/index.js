@@ -2,16 +2,18 @@ import React from "react";
 import ImageItem from "./ImageItem";
 
 function ImageGallery(props) {
-    const {imageList} = props;
+    const {imageList, _handleClickRemoveImage} = props;
 
     return (
-        imageList.map(imageUrl => (
+        imageList.map((imageUrl, index) => (
             <ImageItem
-                key={imageUrl}
+                key={index}
+                index={index}
                 imageSrc={imageUrl}
+                _handleClickRemoveImage={_handleClickRemoveImage}
             />
         ))
     );
 }
 
-export default React.memo(ImageGallery);
+export default ImageGallery;
