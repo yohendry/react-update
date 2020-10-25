@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import './assets/css/style.css';
-import Images from "./components/Images";
+import Images from "./components/ImageContainer";
 
 function App() {
     const [title, setTile] = useState("Title");
@@ -32,7 +32,7 @@ function App() {
                 <div className="text-center">
                     <div className="my-4">{title}</div>
                     <div>
-                        <button className="p-1 bg-blue-700 text-white my-2" onClick={handleClickToggleImage}>Toggle Image</button>
+                        <button className="p-2 bg-blue-700 text-white my-2 rounded" onClick={handleClickToggleImage}>Toggle Image</button>
                     </div>
                 </div>
                 {(showImage && <Images />)}
