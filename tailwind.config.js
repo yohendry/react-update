@@ -3,9 +3,13 @@ module.exports = {
     // removeDeprecatedGapUtilities: true,
     // purgeLayersByDefault: true,
   },
-  purge: [],
+  purge: ["./src/**/*.html", "./src/**/*.jsx", "./src/**/*.js"],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        xs: { max: "400px" },
+      },
+    },
   },
   variants: {},
   plugins: [],

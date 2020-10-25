@@ -1016,6 +1016,15 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@craco/craco@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@craco/craco/-/craco-5.7.0.tgz#ad6a240e0f85ac948f2935581da12d4223d66366"
+  integrity sha512-HpThSg+JZ8FuXtaRuNxLe/RH4TqRe7f6bZfB8tO5ukDthMrf8sKUNOkSS9vnsRbycVEAAuaOamXw+T6LPmqlIg==
+  dependencies:
+    cross-spawn "^7.0.0"
+    lodash "^4.17.15"
+    webpack-merge "^4.2.2"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -6796,6 +6805,11 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+klona@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
+  integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
+
 language-subtag-registry@~0.3.2:
   version "0.3.20"
   resolved "https://registry.yarnpkg.com/language-subtag-registry/-/language-subtag-registry-0.3.20.tgz#a00a37121894f224f763268e431c55556b0c0755"
@@ -8401,6 +8415,17 @@ postcss-loader@3.0.0:
     postcss-load-config "^2.0.0"
     schema-utils "^1.0.0"
 
+postcss-loader@^4.0.3:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-4.0.4.tgz#b2d005b52e008a44991cf8123bee207e635eb53e"
+  integrity sha512-pntA9zIR14drQo84yGTjQJg1m7T0DkXR4vXYHBngiRZdJtEeCrojL6lOpqUanMzG375lIJbT4Yug85zC/AJWGw==
+  dependencies:
+    cosmiconfig "^7.0.0"
+    klona "^2.0.4"
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
+    semver "^7.3.2"
+
 postcss-logical@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/postcss-logical/-/postcss-logical-3.0.0.tgz#2495d0f8b82e9f262725f75f9401b34e7b45d5b5"
@@ -8517,6 +8542,13 @@ postcss-nested@^4.1.1:
   dependencies:
     postcss "^7.0.32"
     postcss-selector-parser "^6.0.2"
+
+postcss-nested@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-5.0.1.tgz#e7a77f7a806a09c8de0f2c163d8e3d09f00f3139"
+  integrity sha512-ZHNSAoHrMtbEzjq+Qs4R0gHijpXc6F1YUv4TGmGaz7rtfMvVJBbu5hMOH+CrhEaljQpEmx5N/P8i1pXTkbVAmg==
+  dependencies:
+    postcss-selector-parser "^6.0.4"
 
 postcss-nesting@^7.0.0:
   version "7.0.1"
@@ -8780,7 +8812,7 @@ postcss-selector-parser@^5.0.0-rc.3, postcss-selector-parser@^5.0.0-rc.4:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss-selector-parser@^6.0.0, postcss-selector-parser@^6.0.2:
+postcss-selector-parser@^6.0.0, postcss-selector-parser@^6.0.2, postcss-selector-parser@^6.0.4:
   version "6.0.4"
   resolved "https://registry.yarnpkg.com/postcss-selector-parser/-/postcss-selector-parser-6.0.4.tgz#56075a1380a04604c38b063ea7767a129af5c2b3"
   integrity sha512-gjMeXBempyInaBqpp8gODmwZ52WaYsVOsfr4L4lDQ7n3ncD6mEyySiDtgzCT+NYC0mmeOLvtsF8iaEf0YT6dBw==
@@ -11305,6 +11337,13 @@ webpack-manifest-plugin@2.2.0:
     lodash ">=3.5 <5"
     object.entries "^1.1.0"
     tapable "^1.0.0"
+
+webpack-merge@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.2.2.tgz#a27c52ea783d1398afd2087f547d7b9d2f43634d"
+  integrity sha512-TUE1UGoTX2Cd42j3krGYqObZbOD+xF7u28WB7tfUordytSjbWTIjK/8V0amkBfTYN4/pB/GIDlJZZ657BGG19g==
+  dependencies:
+    lodash "^4.17.15"
 
 webpack-sources@^1.1.0, webpack-sources@^1.3.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1, webpack-sources@^1.4.3:
   version "1.4.3"
