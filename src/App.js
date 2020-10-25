@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect, useRef} from "react";
+import './assets/css/style.css';
+import Images from "./components/Images";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [title, setTile] = useState("Title");
+    const [showImage, setShowImage] = useState(false);
+    const [didMount, setdidMount] = useState(false);
+    const mountRef = useRef(false);
+
+    // Component Did Mount only
+    useEffect(() => {
+        setdidMount(true);
+        console.log("App Mounted");
+    }, []);
+
+    useEffect(() => {
+        if (mountRef.current) {
+            console.log("App Updated");
+        } else {
+            mountRef.current = true;
+        }
+    }, [showImage]);
+
+    const handleClickToggleImage = () => {
+        setShowImage(!showImage);
+    }
+
+    return(
+        <section className="flex justify-center">
+            <div className="w-10/12">
+                <div className="text-center">
+                    <div className="my-4">{title}</div>
+                    <div>
+                        <button className="p-1 bg-blue-700 text-white my-2" onClick={handleClickToggleImage}>Toggle Image</button>
+                    </div>
+                </div>
+                {(showImage && <Images />)}
+            </div>
+        </section>
+    );
 }
 
 export default App;
