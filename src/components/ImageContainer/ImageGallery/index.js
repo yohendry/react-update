@@ -9,7 +9,7 @@ function ImageGallery(props) {
             <ImageItem
                 key={image.id}
                 index={image.id}
-                imageSrc={image.url}
+                imageSrc={image.thumb}
                 _handleClickRemoveImage={_handleClickRemoveImage}
             />
         ))

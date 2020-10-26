@@ -26,7 +26,7 @@ function ImageItem(props) {
         setIsMouseIn(false);
     }
     return (
-        <div className="w-1/4 my-4 flex justify-center">
+        <div className="p-1 m-1 border">
             <div
                 className="relative"
                 onMouseEnter={handleOnMouseEnter}
@@ -39,7 +39,8 @@ function ImageItem(props) {
                 <img
                     src={imageSrc}
                     alt=""
-                    width="150"
+                    width="100%"
+                    height="auto"
                     className="mx-auto"
                 />
             </div>

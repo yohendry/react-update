@@ -1,65 +1,49 @@
 import React, {useState, useRef, useEffect} from 'react';
+import Unsplash, { toJson } from 'unsplash-js';
 import ImageGallery from "./ImageGallery";
+import useScroll from "../../utils/hooks/useScroll";
+console.log(process.env.REACT_APP_UNSPLASH_ACCESS_KEY);
+const unsplash = new Unsplash({ accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY });
 
 function Images() {
 
-    const [imageList, setImageList] = useState([
-        {
-            url : 'https://images.unsplash.com/photo-1593642702909-dec73df255d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
-            id: 1
-        },
-        {
-            url : 'https://images.unsplash.com/photo-1532559588905-4e8e19d1f09e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80',
-            id: 2
-        },
-        {
-            url : 'https://images.unsplash.com/photo-1603627015794-a4a01d82b90d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80',
-            id: 3
-        },
-        {
-            url : 'https://images.unsplash.com/photo-1603488897066-6370e681baca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80',
-            id: 4
-        }
-    ]);
+    const [imageList, setImageList] = useState([]);
     const [isValidUrl, setIsValidUrl] = useState(false);
     const newImageInputRef = useRef();
 
+    const scrollPostion = useScroll();
+
     useEffect(() => {
-        console.log('Images mounted');
         newImageInputRef.current.focus();
+        fetchImages();
     }, [])
 
-    function handleClickAddImage() {
-        if(!newImageInputRef.current) return;
-        const {value} = newImageInputRef.current;
-        if (isValidUrl) {
-            setImageList([
-                ...imageList,
-                {
-                    url: value,
-                    id: imageList.length
-                }
-            ]);
-            newImageInputRef.current.value = "";
-            handleOnChangeInput();
-        }
+    function fetchImages() {
+        unsplash.search.photos(newImageInputRef.current.value, 1, 10, {})
+            .then(toJson)
+            .then(response => {
+                const {results} = response;
+                return results.map((item) => {
+                    const {color, id, urls } = item;
+                    const {thumb, full} = urls;
+                    return {color, id, thumb, full};
+                });
+            })
+            .then(images => setImageList(images));
+    }
+    function handleClickSearch() {
+        fetchImages();
     }
 
     function _handleClickRemoveImage(id) {
         setImageList(imageList.filter((image) => image.id !== id));
     }
 
-    function handleOnChangeInput() {
-        const regexUrl = new RegExp(/^(http|https):\/\/[^ "]+$/);
-        const {value} = newImageInputRef.current;
-
-        setIsValidUrl(regexUrl.test(value));
-    }
-
     return (
         <section>
             <h4 className="text-center">{`${imageList.length} Images`}</h4>
-            <div className="flex flex-wrap justify-center">
+            <div>{scrollPostion}</div>
+            <div className="gap-0" style={{ columnCount: 3}}>
                 <ImageGallery
                     imageList={imageList}
                     _handleClickRemoveImage={_handleClickRemoveImage} />
@@ -69,14 +53,12 @@ function Images() {
                     type="text"
                     className="p-2 border border-gray-800 shadow rounded flex-1 mr-2"
                     ref={newImageInputRef}
-                    onChange={handleOnChangeInput}
                 />
                 <button
                     className="btn btn-primary"
-                    onClick={handleClickAddImage}
-                    disabled={!isValidUrl}
+                    onClick={handleClickSearch}
                 >
-                    ADD NEW
+                    Search
                 </button>
             </div>
         </section>
