@@ -22,15 +22,16 @@ function Images() {
         }
     ]);
     const [isValidUrl, setIsValidUrl] = useState(false);
-    const newImageSrc = useRef();
+    const newImageInputRef = useRef();
 
     useEffect(() => {
         console.log('Images mounted');
+        newImageInputRef.current.focus();
     }, [])
 
     function handleClickAddImage() {
-        if(!newImageSrc.current) return;
-        const {value} = newImageSrc.current;
+        if(!newImageInputRef.current) return;
+        const {value} = newImageInputRef.current;
         if (isValidUrl) {
             setImageList([
                 ...imageList,
@@ -39,7 +40,7 @@ function Images() {
                     id: imageList.length
                 }
             ]);
-            newImageSrc.current.value = "";
+            newImageInputRef.current.value = "";
             handleOnChangeInput();
         }
     }
@@ -50,13 +51,14 @@ function Images() {
 
     function handleOnChangeInput() {
         const regexUrl = new RegExp(/^(http|https):\/\/[^ "]+$/);
-        const {value} = newImageSrc.current;
+        const {value} = newImageInputRef.current;
 
         setIsValidUrl(regexUrl.test(value));
     }
 
     return (
         <section>
+            <h4 className="text-center">{`${imageList.length} Images`}</h4>
             <div className="flex flex-wrap justify-center">
                 <ImageGallery
                     imageList={imageList}
@@ -66,7 +68,7 @@ function Images() {
                 <input
                     type="text"
                     className="p-2 border border-gray-800 shadow rounded flex-1 mr-2"
-                    ref={newImageSrc}
+                    ref={newImageInputRef}
                     onChange={handleOnChangeInput}
                 />
                 <button
