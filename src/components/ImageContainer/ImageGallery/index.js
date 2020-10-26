@@ -16,4 +16,4 @@ function ImageGallery(props) {
     );
 }
 
-export default React.memo(ImageGallery);
+export default ImageGallery;
