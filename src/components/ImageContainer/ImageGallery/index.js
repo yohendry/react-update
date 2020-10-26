@@ -5,15 +5,15 @@ function ImageGallery(props) {
     const {imageList, _handleClickRemoveImage} = props;
 
     return (
-        imageList.map((imageUrl, index) => (
+        imageList.map((image) => (
             <ImageItem
-                key={index}
-                index={index}
-                imageSrc={imageUrl}
+                key={image.id}
+                index={image.id}
+                imageSrc={image.url}
                 _handleClickRemoveImage={_handleClickRemoveImage}
             />
         ))
     );
 }
 
-export default ImageGallery;
+export default React.memo(ImageGallery);

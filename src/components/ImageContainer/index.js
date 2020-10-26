@@ -4,10 +4,22 @@ import ImageGallery from "./ImageGallery";
 function Images() {
 
     const [imageList, setImageList] = useState([
-        'https://images.unsplash.com/photo-1593642702909-dec73df255d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
-        'https://images.unsplash.com/photo-1532559588905-4e8e19d1f09e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80',
-        'https://images.unsplash.com/photo-1603627015794-a4a01d82b90d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80',
-        'https://images.unsplash.com/photo-1603488897066-6370e681baca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80'
+        {
+            url : 'https://images.unsplash.com/photo-1593642702909-dec73df255d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
+            id: 1
+        },
+        {
+            url : 'https://images.unsplash.com/photo-1532559588905-4e8e19d1f09e?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80',
+            id: 2
+        },
+        {
+            url : 'https://images.unsplash.com/photo-1603627015794-a4a01d82b90d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=935&q=80',
+            id: 3
+        },
+        {
+            url : 'https://images.unsplash.com/photo-1603488897066-6370e681baca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1867&q=80',
+            id: 4
+        }
     ]);
     const [isValidUrl, setIsValidUrl] = useState(false);
     const newImageSrc = useRef();
@@ -21,16 +33,19 @@ function Images() {
         const {value} = newImageSrc.current;
         if (isValidUrl) {
             setImageList([
-                value,
                 ...imageList,
+                {
+                    url: value,
+                    id: imageList.length
+                }
             ]);
             newImageSrc.current.value = "";
             handleOnChangeInput();
         }
     }
 
-    function _handleClickRemoveImage(indexToRemove) {
-        setImageList(imageList.filter((image, currentIndex) => currentIndex !== indexToRemove));
+    function _handleClickRemoveImage(id) {
+        setImageList(imageList.filter((image) => image.id !== id));
     }
 
     function handleOnChangeInput() {
