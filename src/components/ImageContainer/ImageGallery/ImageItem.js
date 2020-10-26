@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function ImageItem(props) {
     const {imageSrc, index, _handleClickRemoveImage} = props;
@@ -16,15 +16,33 @@ function ImageItem(props) {
         'px-2',
         'py-1'
     ];
+    const [isMouseIn, setIsMouseIn] = useState(false);
+
+    function handleOnMouseEnter() {
+        setIsMouseIn(true);
+    }
+
+    function handleOnMouseLeave() {
+        setIsMouseIn(false);
+    }
     return (
-        <div className="w-1/4 my-4 relative">
-            <i className={deleteIconClasses.join(' ')} onClick={() => {_handleClickRemoveImage(index)}}></i>
-            <img
-                src={imageSrc}
-                alt=""
-                width="150"
-                className="mx-auto"
-            />
+        <div className="w-1/4 my-4 flex justify-center">
+            <div
+                className="relative"
+                onMouseEnter={handleOnMouseEnter}
+                onMouseLeave={handleOnMouseLeave}
+            >
+                <i
+                    className={`${deleteIconClasses.join(' ')} ${isMouseIn ? '' : 'hidden'}`}
+                    onClick={() => {_handleClickRemoveImage(index)}}
+                ></i>
+                <img
+                    src={imageSrc}
+                    alt=""
+                    width="150"
+                    className="mx-auto"
+                />
+            </div>
         </div>
     );
 }
